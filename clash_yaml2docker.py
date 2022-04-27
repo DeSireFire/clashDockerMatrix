@@ -106,6 +106,8 @@ def cmdRuner(comm,readList=False):
         return None
 
 def get_yaml_list(file_dir='configs'):
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
     raw_list = os.listdir(file_dir)
     files = [i for i in raw_list
              if os.path.isfile(os.path.join(file_dir, i))
