@@ -6,10 +6,8 @@
 # Blog      : https://blog.raxianch.moe/
 # Github    : https://github.com/DeSireFire
 __author__ = 'RaXianch'
-import os
-import time
+from settings import *
 
-base_path = os.path.abspath(os.path.dirname(__file__))
 # docker 操作函数
 def generateDockerComm(yaml_file_path:str, dockerName:str, port=7890, ui_port=9090):
     '''
@@ -71,6 +69,7 @@ def resultDocker_comm(new_comm, old_comm, dockered):
                     if k == m:  # 容器名称完全相同
                         print(f'{k} 容器无变化仅更新配置，直接重启')
                         result_comms[k] = [v]   # ['docker restart a4e0c2bc78e4']
+                        continue
                     else:       # 容器名称不完全相同，说明端口有变化
                         print(f'{k} 容器有变化且存在端口占用！')
                         docker_id = dockered.get(k)
@@ -159,3 +158,6 @@ if __name__ == '__main__':
         print(f"等待执行结束..")
         time.sleep(5)
 
+
+    # 最终大清理
+    cmdRuner("docker rm $(sudo docker ps -qf status=exited |grep clash)")
