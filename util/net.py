@@ -41,6 +41,24 @@ def dict_to_urlParam(temp_dict: dict) -> str:
     params = urllib.parse.urlencode(temp_dict)
     return params
 
+def text_downloader(file_url, save_path):
+    """
+    文本文件下载
+    :param save_path: str, 文件保存路径
+    :param file_url: str, 文件下载的url
+    :return: byte, 文件流
+    """
+    response = requests.get(file_url)
+    if response.status_code == 200:
+        with open(save_path, "w", encoding="utf-8") as f:
+            f.write(response.text)
+
+    else:
+        print(f'{file_url} 下载失败！')
+
+    return response.text,save_path
+
+
 def file_downloader(file_url, save_path):
     """
     文件下载
@@ -56,10 +74,11 @@ def file_downloader(file_url, save_path):
     else:
         print(f'{file_url} 下载失败！')
 
-    return save_path
+    return response.content,save_path
 
 # 只允许导出 redis_client 实例化对象
 __all__ = [
+    "text_downloader",
     "file_downloader",
     "dict_to_urlParam",
     "url_unquote",
