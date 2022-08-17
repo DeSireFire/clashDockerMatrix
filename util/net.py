@@ -49,14 +49,15 @@ def text_downloader(file_url, save_path):
     :return: byte, 文件流
     """
     response = requests.get(file_url)
-    if response.status_code == 200:
+    result = ""
+    if response.status_code == 200 and "No nodes were found!" not in response.text:
         with open(save_path, "w", encoding="utf-8") as f:
             f.write(response.text)
-
+        result = response.text
     else:
         print(f'{file_url} 下载失败！')
 
-    return response.text,save_path
+    return result,save_path
 
 
 def file_downloader(file_url, save_path):
