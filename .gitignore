@@ -110,3 +110,4 @@ __pycache__/
 
 .idea
 *.yml
+/settings.py
