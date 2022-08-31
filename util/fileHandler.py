@@ -9,7 +9,6 @@ __author__ = 'RaXianch'
 import os
 def StrOfSize(size):
     '''
-    auth: wangshengke@kedacom.com ；科达柯大侠
     递归实现，精确为最大单位值 + 小数点后三位
     '''
     def strofsize(integer, remainder, level):

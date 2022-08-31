@@ -24,7 +24,7 @@ rss_pool = {
 # 本程序则通过subconverter转换工具转为标准的clash配置文件
 # 文件名称:url
 convert_rss_pool = {
-    'convert_demo': 'https://rss.linghunyun.xyz/api/v1/client/subscribe?token=xxx',
+    'convert_demo': 'https://rss.xxx.xyz/api/v1/client/subscribe?token=xxx',
 }
 
 # 订阅转换接口
