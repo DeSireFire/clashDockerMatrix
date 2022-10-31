@@ -28,10 +28,12 @@ def generateDockerComm(yaml_file_path:str, dockerName:str, port=7890, ui_port=90
         f"--name '{dockerName}'",
         f"--restart always",
         f"-p {port}:7890",
-        f"-p {port+1000}:7891/udp",
-        f"-p {f'9{ui_port}'}:9090",
+        f"-p {port+100}:7891/udp",
+        f"-p {f'{ui_port}'}:9090",
         f"-v {yaml_file_path}:/root/.config/clash/config.yaml",
-        f"dreamacro/clash"
+        # f"-v {yaml_file_path}:/etc/clash/config.yml",
+        # f"dreamacro/clash"        # 开源版
+        f"dreamacro/clash-premium" # 闭源版
         # f"-v /path/ui:/ui",   # 用不上
     ]
     comm = ""
